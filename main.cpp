@@ -1,7 +1,11 @@
-﻿#include <iostream>
+﻿import std; //現状std.ixxをビルド対象に含めると使える
+import myModule;
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	hello();
+	
+	std::println("use std module!");
+
 	return 0;
 }
