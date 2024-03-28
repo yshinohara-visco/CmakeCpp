@@ -1,10 +1,4 @@
 # CmakeCpp
 
-## ŠT—v
-cmake‚ð—p‚¢‚½C++‚ÌƒvƒƒWƒFƒNƒgB
-
-## —p“r
-FXŽŽ‚µ‚½‚±‚Æ‚Ì‹L˜^‚ÉŽg—p‚·‚éB
-master‚ªC++17‚ÌHelloworldƒvƒƒWƒFƒNƒg‚Æ‚È‚Á‚Ä‚¢‚éB
-ƒ‰ƒCƒuƒ‰ƒŠ“™‚ðŽŽ‚µ‚½‚¢ŽžA‚»‚ê—p‚Ìƒuƒ‰ƒ“ƒ`‚ðØ‚Á‚ÄŽŽ‚·B
-Šeƒuƒ‰ƒ“ƒ`‚ª‚»‚ê‚¼‚ê‚ÌƒTƒ“ƒvƒ‹‚É‚È‚é‚æ‚¤‚ÈŒ`‚ð–ÚŽw‚·B
+## æ¦‚è¦
+windowsã§ã®sleepã®ç²¾åº¦ãŒæ€ã£ãŸä»¥ä¸Šã«æ‚ªã„ä»¶ã«ã¤ã„ã¦è©¦ã—ãŸã‚‚ã®
