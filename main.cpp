@@ -3,6 +3,10 @@
 #include <chrono>
 #include <functional>
 
+//windowsのAPI
+#include <Windows.h>
+#include <timeapi.h> //これ単体では駄目だった
+
 void measureTime(std::function<void()> func)
 {
 	auto start = std::chrono::high_resolution_clock::now();
@@ -57,6 +61,18 @@ int main()
     doNtimes([&](){measureTime([&](){sleepStd(time3);});}, 10);
     std::cout << "-------" << std::endl;
     doNtimes([&](){measureTime([&](){sleepSpin(time3);});}, 10);
+
+    /*
+    windowsのAPItimeBeginPeriodで精度を上げることができる
+    が、その分タスクの切替が増え、全体のパフォーマンスが下がる可能性がある
+    */
+    timeBeginPeriod(1); //1msの精度を設定
+    std::cout << "------- timeBeginPeriodを使用 ---------------------" << std::endl;
+    doNtimes([&]() {measureTime([&]() {sleepStd(time1); }); }, 10);
+    std::cout << "-------" << std::endl;
+    doNtimes([&]() {measureTime([&]() {sleepSpin(time1); }); }, 10);
+    timeEndPeriod(1); //設定を解除
+
 	return 0;
 }
 
@@ -64,60 +80,60 @@ int main()
 結果
 
 ---------------------
-elapsed time: 19ms
-elapsed time: 4ms
-elapsed time: 15ms
-elapsed time: 1ms
-elapsed time: 15ms
-elapsed time: 16ms
-elapsed time: 14ms
 elapsed time: 14ms
 elapsed time: 16ms
-elapsed time: 7ms
--------
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
-elapsed time: 1ms
----------------------
-elapsed time: 25ms
+elapsed time: 2ms
+elapsed time: 13ms
 elapsed time: 14ms
 elapsed time: 15ms
 elapsed time: 15ms
-elapsed time: 14ms
-elapsed time: 22ms
+elapsed time: 16ms
 elapsed time: 17ms
-elapsed time: 14ms
 elapsed time: 15ms
-elapsed time: 16ms
+-------
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+---------------------
+elapsed time: 17ms
+elapsed time: 15ms
+elapsed time: 15ms
+elapsed time: 21ms
+elapsed time: 15ms
+elapsed time: 17ms
+elapsed time: 15ms
+elapsed time: 14ms
+elapsed time: 13ms
+elapsed time: 20ms
 -------
 elapsed time: 10ms
 elapsed time: 10ms
+elapsed time: 19ms
 elapsed time: 10ms
+elapsed time: 11ms
+elapsed time: 11ms
+elapsed time: 11ms
 elapsed time: 10ms
-elapsed time: 10ms
-elapsed time: 10ms
-elapsed time: 10ms
-elapsed time: 10ms
-elapsed time: 10ms
+elapsed time: 11ms
 elapsed time: 10ms
 ---------------------
-elapsed time: 115ms
-elapsed time: 110ms
-elapsed time: 116ms
-elapsed time: 102ms
-elapsed time: 111ms
-elapsed time: 101ms
+elapsed time: 113ms
 elapsed time: 100ms
+elapsed time: 113ms
 elapsed time: 105ms
-elapsed time: 107ms
-elapsed time: 112ms
+elapsed time: 106ms
+elapsed time: 105ms
+elapsed time: 113ms
+elapsed time: 114ms
+elapsed time: 114ms
+elapsed time: 100ms
 -------
 elapsed time: 100ms
 elapsed time: 100ms
@@ -129,4 +145,26 @@ elapsed time: 100ms
 elapsed time: 100ms
 elapsed time: 100ms
 elapsed time: 100ms
+------- timeBeginPeriodを使用 ---------------------
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 2ms
+-------
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
+elapsed time: 1ms
 */

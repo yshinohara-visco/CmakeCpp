@@ -21,3 +21,9 @@ target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
 )
+
+# ライブラリ
+target_link_libraries(${TARGET_NAME}
+	PRIVATE
+		winmm.lib
+)
