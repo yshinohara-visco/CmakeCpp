@@ -1,10 +1,21 @@
 # CmakeCpp
 
 ## 概要
-cmakeを用いたC++のプロジェクト。
+Cmakeプロジェクトで作成したDLLを完全に別のプロジェクトから使用するには何が要るかを確認した。
 
-## 用途
-色々試したことの記録に使用する。
-masterがC++17のHelloworldプロジェクトとなっている。
-ライブラリ等を試したい時、それ用のブランチを切って試す。
-各ブランチがそれぞれのサンプルになるような形を目指す。
+## 詳細
+
+LibProjectで静的ライブラリModuleStaticと動的ライブラリModuleSharedを作成している。
+LibPriject内からこれらを使用するにはadd_subdirectoryからのtarget_link_directoriesでいい。
+
+全く別のCmakeプロジェクトExeProjectから使用するには最低限何が必要か？
+cmakeで適切にインストールしたり出力する方法が良く分からなかったので、手作業でコピーしながら試した。
+
+まず、コンパイルにModuleStaic.hとModuleShared.hの両方が必要だった。
+これはModuleShared.hがModuleStaic.hをインクルードするから。
+
+リンクにはModuleStatic.libとModuleShared.libの両方が必要だった。ModuleShared.libにStaticの内容が含まれるということは無いらしい。
+
+実行にはModuleShared.dllが必要だった。
+
+一部をDLLにして公開したかったが、結局開発には全てのヘッダ、libが必要と考えた方が良さそう。
