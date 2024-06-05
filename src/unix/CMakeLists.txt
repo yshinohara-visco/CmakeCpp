@@ -1,0 +1,5 @@
+
+file( GLOB SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/**.c* )
+target_sources( ${TARGET_LIB} PRIVATE
+	${SRC_FILES}
+)
