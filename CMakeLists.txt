@@ -12,7 +12,7 @@ add_executable(${TARGET_NAME})
 # C++17を使用する
 set_target_properties(${TARGET_NAME}
 	PROPERTIES
-		CXX_STANDARD 17
+		CXX_STANDARD 23
 		CXX_STANDARD_REQUIRED ON
 )
 
@@ -20,4 +20,4 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
-)
+ "coroutine.h" "coroutine.cpp")
