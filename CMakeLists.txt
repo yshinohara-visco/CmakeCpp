@@ -9,10 +9,10 @@ project(CmakeCpp)
 set (TARGET_NAME CmakeCpp)
 add_executable(${TARGET_NAME})
 
-# C++17を使用する
+# C++20を使用する
 set_target_properties(${TARGET_NAME}
 	PROPERTIES
-		CXX_STANDARD 17
+		CXX_STANDARD 20
 		CXX_STANDARD_REQUIRED ON
 )
 
@@ -20,4 +20,6 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
-)
+ "precise_wait.cpp" "precise_wait.h" "stop_watch.h" "stop_watch.cpp")
+
+ target_link_libraries(${TARGET_NAME} PRIVATE winmm)
