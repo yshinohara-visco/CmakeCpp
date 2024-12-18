@@ -20,6 +20,9 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
- "precise_wait.cpp" "precise_wait.h" "stop_watch.h" "stop_watch.cpp")
+ "precise_wait.cpp" "precise_wait.h")
 
- target_link_libraries(${TARGET_NAME} PRIVATE winmm)
+ target_link_libraries(${TARGET_NAME} PRIVATE StopWatchLib winmm)
+
+ # サブディレクトリ
+ add_subdirectory(StopWatch)

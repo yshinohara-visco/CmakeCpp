@@ -1,0 +1,3 @@
+[submodule "StopWatch"]
+	path = StopWatch
+	url = https://github.com/yshinohara-visco/StopWatch.git
