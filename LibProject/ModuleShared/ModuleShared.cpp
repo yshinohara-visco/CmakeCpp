@@ -1,4 +1,5 @@
 #include "ModuleShared.h"
+#include "ModuleStatic.h"
 
 #include <iostream>
 
@@ -17,12 +18,7 @@ std::string CallStaticFunction(int num)
 SharedClass::SharedClass()
 {
     std::cout << "SharedClass::SharedClass()" << std::endl;
-}
 
-std::string SharedClass::MemberFunction(int num)
-{
-    StaticClass::MemberFunction(num);
-
-    std::cout << "SharedClass::MemberFunction(" << num << ")" << std::endl;
-    return "SharedClass::MemberFunction";
+    StaticClass staticClass;
+    staticClass.MemberFunction(1);
 }

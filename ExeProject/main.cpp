@@ -10,7 +10,6 @@ int main()
 	std::cout << CallStaticFunction(3) << std::endl;
 
 	auto sharedClass = SharedClass();
-	std::cout << sharedClass.MemberFunction(4) << std::endl;
 	
 	return 0;
 }

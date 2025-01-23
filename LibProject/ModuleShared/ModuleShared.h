@@ -1,14 +1,12 @@
 #pragma once
 
-#include "ModuleStatic.h"
+#include <string>
 
 std::string SharedFunction(int num);
 std::string CallStaticFunction(int num);
 
-class SharedClass : public StaticClass
+class SharedClass
 {
 public:
     SharedClass();
-
-    std::string MemberFunction(int num) override;
 };

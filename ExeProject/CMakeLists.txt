@@ -20,12 +20,11 @@ set_target_properties(${RUN_MAIN}
 target_sources(${RUN_MAIN}
 	PRIVATE
 		main.cpp 
- "ModuleStatic.h")
+  "ModuleShared.h")
 
 # リンクするライブラリ
 target_link_libraries(${RUN_MAIN}
 	PRIVATE
-		ModuleStatic
 		ModuleShared
 )
 
