@@ -20,4 +20,4 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
-)
+ "template.h" "tempalte.cpp" "printer.cpp" "printer.h")
