@@ -20,4 +20,4 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
-)
+ "DriveChekcer1.cpp" "DriveChekcer1.h" "common.h" "common.cpp")
