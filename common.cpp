@@ -41,11 +41,24 @@ auto GetDriveTypeStr(unsigned int driveType) -> std::string
     }
 }
 
+auto ByteToString(unsigned long long bytes) -> std::string
+{
+    const char* units[] = { "B", "KB", "MB", "GB", "TB", "PB" };
+    int unitIndex = 0;
+    double size = static_cast<double>(bytes);
+    while (size >= 1024 && unitIndex < 5)
+    {
+        size /= 1024;
+        ++unitIndex;
+    }
+    return std::to_string(size) + " " + units[unitIndex];
+}
+
 void PrintInfo(const DriveInfo& info)
 {
     std::cout << "Drive: " << info.name << "\n"
         << "Type: " << info.type << "\n"
-        << "Total Space: " << info.totalSpace / (1024 * 1024 * 1024) << " GB\n"
-        << "Free Space: " << info.freeSpace / (1024 * 1024 * 1024) << " GB\n"
+        << "Total Space: " << ByteToString(info.totalSpace) << "\n"
+        << "Free Space: " << ByteToString(info.freeSpace) << "\n"
         << std::endl;
 }

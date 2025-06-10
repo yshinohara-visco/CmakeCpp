@@ -1,19 +1,27 @@
 #pragma once
 
+#include <unordered_map>
+#include <future>
+#include <filesystem>
+#include <memory>
+#include <optional>
+
 #include "common.h"
 
-/*
-全体的に非同期にして、更新指示→終わるか一定時間経過でその時点の結果を取得、とかどうか
-*/
-class DriveChecker3
-{
+class DriveChecker3 {
 public:
-    DriveChecker3();
     ~DriveChecker3();
 
     auto GetAllDriveSpace() -> std::vector<DriveInfo>;
 
-
 private:
+    bool checkAccessible(const std::string& path, std::chrono::milliseconds timeout);
 
+    struct DriveState {
+        std::optional<std::future<bool>> future;
+    };
+
+    std::unordered_map<std::string, DriveState> states_;
+    std::mutex mutex_;
 };
+
