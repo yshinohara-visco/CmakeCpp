@@ -3,16 +3,6 @@
 #include <iostream>
 #include "windows.h"
 
-DriveChecker3::~DriveChecker3()
-{
-    std::unique_lock lock(mutex_);
-    for (auto& [_, state] : states_) {
-        if (state.future.has_value()) {
-            state.future->wait();
-        }
-    }
-}
-
 auto DriveChecker3::GetAllDriveSpace() -> std::vector<DriveInfo>
 {
     std::vector<DriveInfo> driveInfos;
@@ -47,28 +37,40 @@ auto DriveChecker3::GetAllDriveSpace() -> std::vector<DriveInfo>
 
 bool DriveChecker3::checkAccessible(const std::string& path, std::chrono::milliseconds timeout)
 {
-    std::scoped_lock lock(mutex_);
+    std::unique_lock lock(mutex_);
 
-    auto& state = states_[path];
-    if (state.future.has_value() &&
-        state.future->wait_for(std::chrono::seconds(0)) != std::future_status::ready) {
-        return false; // 前回の確認がまだ終わっているのでスキップ
+    if(checking_[path])
+    {
+        return false; // 前回の処理が終わっていないのでスキップ
     }
 
-    state.future = std::async(std::launch::async, [path]() {
-        try {
-            return std::filesystem::exists(path);
+    checking_[path] = true;
+    connected_[path] = false;
+
+    std::weak_ptr<DriveChecker3> weak_this = weak_from_this();
+    auto th = std::thread([weak_this, path](){
+        bool result = false;
+        try{
+            result = std::filesystem::exists(path);
         }
-        catch (...) {
-            return false;
+        catch(...){
+            result = false;
         }
+        if(auto shared_this = weak_this.lock())
+        {
+            std::unique_lock lock(shared_this->mutex_);
+            shared_this->connected_[path] = result;
+            shared_this->checking_[path] = false;
+            shared_this->cv_.notify_all(); // 通知待機中のスレッド
+        }
+    });
+    th.detach();
+    // detachしようがプログラム終了時に長引くパターンを引いてしまうと終了しなくなってしまう
+
+    // 確認が終わるかタイムアウトまで待つ
+    cv_.wait_for(lock, timeout, [this, &path]() {
+        return !checking_[path];
         });
 
-    if (state.future->wait_for(timeout) == std::future_status::ready) {
-        bool result = state.future->get();
-        states_.erase(path); // 完了したら状態を削除
-        return result;
-    }
-
-    return false; // タイムアウト
+    return connected_[path];
 }

@@ -14,11 +14,11 @@ int main()
     //DriveChecker2 dc2;
     //auto driveInfos = dc2.GetAllDriveSpace();
 
-    DriveChecker3 dc3;
+    auto dc3 = DriveChecker3::Create();
 	for (size_t i = 0; i < 10; i++)
 	{
 		std::cout << "----" << i << "----" << std::endl;
-		auto driveInfos = dc3.GetAllDriveSpace();
+		auto driveInfos = dc3->GetAllDriveSpace();
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
     
