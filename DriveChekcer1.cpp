@@ -18,8 +18,8 @@ auto DriveChecker1::GetAllDriveSpace() -> std::vector<DriveInfo>
     for (const auto& drive : drives)
     {
         std::cout << "Start get info " << drive << std::endl;
-        auto drive_type = GetDriveTypeA(drive.c_str());
-        if (drive_type == DRIVE_NO_ROOT_DIR || drive_type == DRIVE_UNKNOWN)
+        auto driveType = GetDriveTypeA(drive.c_str());
+        if (driveType == DRIVE_NO_ROOT_DIR || driveType == DRIVE_UNKNOWN)
         {
             std::cout << drive << " is invalid" << std::endl;
             continue; // Skip invalid drives
@@ -32,7 +32,7 @@ auto DriveChecker1::GetAllDriveSpace() -> std::vector<DriveInfo>
         {
             DriveInfo info;
             info.name = drive;
-            info.type = GetDriveTypeStr(drive_type);;
+            info.type = GetDriveTypeStr(driveType);;
             info.totalSpace = totalNumberOfBytes.QuadPart;
             info.freeSpace = totalNumberOfFreeBytes.QuadPart;
             driveInfos.push_back(info);
