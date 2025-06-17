@@ -20,7 +20,7 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
- "DriveChekcer1.cpp" "DriveChekcer1.h" "common.h" "common.cpp" "DriveChecker2.h" "DriveChecker2.cpp" "DriveChecker3.h" "DriveChecker3.cpp")
+ "DriveChecker1.cpp" "DriveChecker1.h" "common.h" "common.cpp" "DriveChecker2.h" "DriveChecker2.cpp" "DriveChecker3.h" "DriveChecker3.cpp" "DriveChecker4.h" "DriveChecker4.cpp")
 
  target_link_libraries(${TARGET_NAME}
  PRIVATE

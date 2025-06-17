@@ -1,4 +1,4 @@
-#include "DriveChekcer1.h"
+#include "DriveChecker1.h"
 
 #include <iostream>
 #include "Windows.h"
