@@ -41,6 +41,7 @@ private:
     mutable std::mutex mutex_;
 
     std::string FormatDuration(const std::chrono::nanoseconds& duration) const;
+    std::string GetFormattedResultInternal() const;
 };
 
 class TimerManager {

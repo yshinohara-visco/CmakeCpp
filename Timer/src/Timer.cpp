@@ -14,7 +14,12 @@ Timer::~Timer() {
     if (is_running_) {
         Stop();
     }
-    if (!delayed_output_) {
+    bool should_flush = false;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        should_flush = !delayed_output_;
+    }
+    if (should_flush) {
         FlushOutput();
     }
 }
@@ -40,19 +45,24 @@ void Timer::Wrap(const std::string& message) {
 }
 
 void Timer::Stop() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!is_running_) {
-        return;
+    bool should_flush = false;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (!is_running_) {
+            return;
+        }
+        
+        TimePoint tp;
+        tp.time = std::chrono::high_resolution_clock::now();
+        tp.message = "Stop";
+        tp.is_wrap = false;
+        time_points_.push_back(tp);
+        is_running_ = false;
+        
+        should_flush = !delayed_output_;
     }
     
-    TimePoint tp;
-    tp.time = std::chrono::high_resolution_clock::now();
-    tp.message = "Stop";
-    tp.is_wrap = false;
-    time_points_.push_back(tp);
-    is_running_ = false;
-    
-    if (!delayed_output_) {
+    if (should_flush) {
         FlushOutput();
     }
 }
@@ -69,16 +79,24 @@ void Timer::SetDelayedOutput(bool delayed) {
 }
 
 void Timer::FlushOutput() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (time_points_.empty()) {
-        return;
+    std::string result;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (time_points_.empty()) {
+            return;
+        }
+        result = GetFormattedResultInternal();
     }
     
-    std::cout << GetFormattedResult() << std::endl;
+    std::cout << result << std::endl;
 }
 
 std::string Timer::GetFormattedResult() const {
     std::lock_guard<std::mutex> lock(mutex_);
+    return GetFormattedResultInternal();
+}
+
+std::string Timer::GetFormattedResultInternal() const {
     if (time_points_.empty()) {
         return "[" + name_ + "] No measurements recorded";
     }
