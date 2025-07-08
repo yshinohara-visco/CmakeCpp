@@ -14,14 +14,8 @@ Timer::~Timer() {
     if (is_running_) {
         Stop();
     }
-    bool should_flush = false;
-    {
-        std::lock_guard<std::mutex> lock(mutex_);
-        should_flush = !delayed_output_;
-    }
-    if (should_flush) {
-        FlushOutput();
-    }
+    // デストラクタでは追加の出力は行わない
+    // Stop()で既に出力されているか、遅延出力が設定されている
 }
 
 void Timer::Start() {
