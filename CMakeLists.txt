@@ -1,9 +1,12 @@
 ﻿
 # cmakeに要求する最低バージョン
-cmake_minimum_required(VERSION 3.00)
+cmake_minimum_required(VERSION 3.14)
 
 # プロジェクト名
 project(CmakeCpp)
+
+# GoogleTest設定を読み込み
+include(cmakes/google_test.cmake)
 
 # 出力するバイナリ
 set (TARGET_NAME CmakeCpp)
@@ -17,8 +20,8 @@ set_target_properties(${TARGET_NAME}
 )
 
 # サブディレクトリ
-add_subdirectory(Timer)
 add_subdirectory(math_lib)
+add_subdirectory(tests)
 
 # ソースファイル
 target_sources(${TARGET_NAME}
@@ -29,6 +32,5 @@ target_sources(${TARGET_NAME}
 # リンクライブラリ
 target_link_libraries(${TARGET_NAME}
 	PRIVATE
-		Timer
 		math_operations
 )
