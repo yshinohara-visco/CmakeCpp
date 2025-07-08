@@ -84,7 +84,7 @@ std::string Timer::GetFormattedResult() const {
     }
     
     std::ostringstream oss;
-    oss << "┌─ Timer: " << name_ << " ─┐\n";
+    oss << "+-- Timer: " << name_ << " --+\n";
     
     auto previous_time = start_time_;
     auto total_duration = std::chrono::nanoseconds::zero();
@@ -94,15 +94,15 @@ std::string Timer::GetFormattedResult() const {
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time - previous_time);
         auto cumulative = std::chrono::duration_cast<std::chrono::nanoseconds>(tp.time - start_time_);
         
-        oss << "│ " << std::setw(12) << tp.message << ": " 
+        oss << "| " << std::setw(12) << tp.message << ": " 
             << std::setw(10) << FormatDuration(duration) 
-            << " (累計: " << std::setw(10) << FormatDuration(cumulative) << ")\n";
+            << " (total: " << std::setw(10) << FormatDuration(cumulative) << ")\n";
         
         previous_time = tp.time;
         total_duration = cumulative;
     }
     
-    oss << "└─ 総時間: " << FormatDuration(total_duration) << " ─┘";
+    oss << "+-- Total Time: " << FormatDuration(total_duration) << " --+";
     
     return oss.str();
 }
