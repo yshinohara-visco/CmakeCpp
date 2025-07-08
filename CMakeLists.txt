@@ -16,8 +16,17 @@ set_target_properties(${TARGET_NAME}
 		CXX_STANDARD_REQUIRED ON
 )
 
+# サブディレクトリ
+add_subdirectory(Timer)
+
 # ソースファイル
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
+)
+
+# リンクライブラリ
+target_link_libraries(${TARGET_NAME}
+	PRIVATE
+		Timer
 )
