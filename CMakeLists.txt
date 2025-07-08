@@ -18,6 +18,7 @@ set_target_properties(${TARGET_NAME}
 
 # サブディレクトリ
 add_subdirectory(Timer)
+add_subdirectory(math_lib)
 
 # ソースファイル
 target_sources(${TARGET_NAME}
@@ -29,4 +30,5 @@ target_sources(${TARGET_NAME}
 target_link_libraries(${TARGET_NAME}
 	PRIVATE
 		Timer
+		math_operations
 )
