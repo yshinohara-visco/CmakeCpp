@@ -21,6 +21,7 @@ set_target_properties(${TARGET_NAME}
 
 # サブディレクトリ
 add_subdirectory(math_lib)
+add_subdirectory(async_data)
 add_subdirectory(tests)
 
 # ソースファイル
@@ -33,4 +34,5 @@ target_sources(${TARGET_NAME}
 target_link_libraries(${TARGET_NAME}
 	PRIVATE
 		math_operations
+		async_data
 )

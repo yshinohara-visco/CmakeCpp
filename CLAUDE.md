@@ -54,3 +54,10 @@ The project follows a modular library design:
 - All new files should be created with UTF-8 with BOM encoding for Visual Studio compatibility
 - This is especially important for files containing Japanese characters
 - Existing files should maintain their current encoding unless specifically requested to change
+
+## Coding Style
+- Function names: PascalCase (例: UpdateValue, ReadText)
+- Variable names: snake_case (例: new_value, current_data)
+- Member variables: snake_case with trailing underscore (例: current_data_, update_mutex_)
+- Constants: UPPER_SNAKE_CASE (例: MAX_VALUE, DEFAULT_TEXT)
+- Class names: PascalCase (例: AsyncData, MathOperations)
