@@ -48,3 +48,9 @@ cmake --build out/build/x64-Debug
 - Project uses Japanese comments in CMakeLists.txt and README.md
 - The build system appears to support multiple libraries and test configurations based on the build directory structure
 - GoogleTest integration suggests this project may expand to include unit testing
+
+## File Encoding Requirements
+- **ソースファイルエンコーディング**: UTF-8 with BOM を使用してください
+- **理由**: Visual Studio 2022のMSVCコンパイラでの日本語文字列リテラルのコンパイルエラー回避
+- **対象ファイル**: すべての.cpp/.hファイル（特に日本語コメントや文字列リテラルを含むもの）
+- **設定方法**: Visual Studioまたはエディタの「名前を付けて保存」→「エンコードあり」→「UTF-8 (署名付き) - コードページ 65001」

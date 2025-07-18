@@ -28,6 +28,7 @@ target_sources(${TARGET_NAME}
 
 # サブディレクトリの追加
 add_subdirectory(io_context)
+add_subdirectory(socket)
 
 # ライブラリ
 target_link_libraries(${TARGET_NAME}
