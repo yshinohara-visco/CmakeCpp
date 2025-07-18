@@ -1,10 +1,14 @@
 # CmakeCpp
 
-## �T�v
-cmake��p����C++�̃v���W�F�N�g�B
+## 概要
+cmakeを用いたC++のプロジェクト。
 
-## �p�r
-�F�X���������Ƃ̋L�^�Ɏg�p����B
-master��C++23��Helloworld�v���W�F�N�g�ƂȂ��Ă���B
-���C�u�������������������A����p�̃u�����`��؂��Ď����B
-�e�u�����`�����ꂼ��̃T���v���ɂȂ�悤�Ȍ`��ڎw���B
+## 備考
+テストなどの記録に使用する。
+master＝C++23のHelloworldプロジェクトとなっている。
+ライブラリ群の確認などはブランチを切って行う。
+各ブランチがそれぞれのサンプルになるような形を目指す。
+
+### boost/asioブランチについて
+このブランチはBoost.Asioライブラリの動作確認を行うためのものです。
+非同期I/O操作やネットワークプログラミング機能のテストと検証を目的としています。
