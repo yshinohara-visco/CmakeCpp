@@ -16,8 +16,18 @@ set_target_properties(${TARGET_NAME}
 		CXX_STANDARD_REQUIRED ON
 )
 
+# boost
+set(CMAKE_PREFIX_PATH "D:/Library/boost") # インストール場所
+find_package(Boost REQUIRED)
+
 # ソースファイル
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
+)
+
+# ライブラリ
+target_link_libraries(${TARGET_NAME}
+	PRIVATE
+		Boost::headers
 )
