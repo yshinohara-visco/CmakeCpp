@@ -1,10 +1,10 @@
 # CmakeCpp
 
-## �T�v
-cmake��p����C++�̃v���W�F�N�g�B
+## 概要
 
-## �p�r
-�F�X���������Ƃ̋L�^�Ɏg�p����B
-master��C++23��Helloworld�v���W�F�N�g�ƂȂ��Ă���B
-���C�u�������������������A����p�̃u�����`��؂��Ď����B
-�e�u�����`�����ꂼ��̃T���v���ɂȂ�悤�Ȍ`��ڎw���B
+cmake プロジェクトを VSCode で開き、ClaudeCode for VSCode で編集もビルドも実行結果の確認もさせてみたい。
+
+## 内容
+
+何らかの処理をして結果を端末に出力するプログラムを作る。又は実行中の情報を端末に出力させる。
+以上の条件を守れば、ClaudeCode から開発、ビルド、実行して、出力を元に動作確認して ClaudeCode 単体で開発を続けられるようになるのでは？
