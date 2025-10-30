@@ -20,4 +20,4 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
-)
+ "my_class.h" "TestOrder.h" "TestAsync.h")
