@@ -1,0 +1,26 @@
+﻿# .editorconfig について詳しくは、次をご覧ください https://aka.ms/editorconfigdocs
+
+root = true
+
+# All files
+[*]
+indent_style = space
+charset = utf-8-bom
+trim_trailing_whitespace = true
+
+# Xml files
+[*.xml]
+indent_size = 2
+
+# json
+[*.json]
+charset = utf-8
+
+# sh
+[*.sh]
+charset = utf-8-bom
+end_of_line = lf
+
+# md
+[*.md]
+trim_trailing_whitespace = false

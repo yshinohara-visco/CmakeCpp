@@ -1,10 +1,10 @@
-# CmakeCpp
+ï»¿# CmakeCpp
 
-## ŠT—v
-cmake‚ð—p‚¢‚½C++‚ÌƒvƒƒWƒFƒNƒgB
+## æ¦‚è¦
+cmakeã‚’ç”¨ã„ãŸC++ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã€‚
 
-## —p“r
-FXŽŽ‚µ‚½‚±‚Æ‚Ì‹L˜^‚ÉŽg—p‚·‚éB
-master‚ªC++23‚ÌHelloworldƒvƒƒWƒFƒNƒg‚Æ‚È‚Á‚Ä‚¢‚éB
-ƒ‰ƒCƒuƒ‰ƒŠ“™‚ðŽŽ‚µ‚½‚¢ŽžA‚»‚ê—p‚Ìƒuƒ‰ƒ“ƒ`‚ðØ‚Á‚ÄŽŽ‚·B
-Šeƒuƒ‰ƒ“ƒ`‚ª‚»‚ê‚¼‚ê‚ÌƒTƒ“ƒvƒ‹‚É‚È‚é‚æ‚¤‚ÈŒ`‚ð–ÚŽw‚·B
+## ç”¨é€”
+è‰²ã€…è©¦ã—ãŸã“ã¨ã®è¨˜éŒ²ã«ä½¿ç”¨ã™ã‚‹ã€‚
+masterãŒC++23ã®Helloworldãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¨ãªã£ã¦ã„ã‚‹ã€‚
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç­‰ã‚’è©¦ã—ãŸã„æ™‚ã€ãã‚Œç”¨ã®ãƒ–ãƒ©ãƒ³ãƒã‚’åˆ‡ã£ã¦è©¦ã™ã€‚
+å„ãƒ–ãƒ©ãƒ³ãƒãŒãã‚Œãžã‚Œã®ã‚µãƒ³ãƒ—ãƒ«ã«ãªã‚‹ã‚ˆã†ãªå½¢ã‚’ç›®æŒ‡ã™ã€‚
