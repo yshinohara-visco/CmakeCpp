@@ -80,7 +80,7 @@ void run4(int num1, int num2)
     }
     else
     {
-        std::cout << "Error in divide4: " << std::get<std::string>(result) << std::endl;
+        std::cout << "Error in divide4: " << to_string(std::get<DivideError>(result)) << std::endl;
     }
 }
 
@@ -99,7 +99,7 @@ void run5(int num1, int num2)
     }
     else
     {
-        std::cout << "Error in divide5: " << result.error() << std::endl;
+        std::cout << "Error in divide5: " << to_string(result.error()) << std::endl;
     }
 }
 

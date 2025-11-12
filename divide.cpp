@@ -30,20 +30,20 @@ std::optional<double> divide3(int a, int b)
     return static_cast<double>(a) / b;
 }
 
-std::variant<double,std::string> divide4(int a, int b)
+std::variant<double, DivideError> divide4(int a, int b)
 {
     if (b == 0)
     {
-        return "Division by zero";
+        return DivideError::DivisionByZero;
     }
     return static_cast<double>(a) / b;
 }
 
-std::expected<double, std::string> divide5(int a, int b)
+std::expected<double, DivideError> divide5(int a, int b)
 {
     if (b == 0)
     {
-        return std::unexpected("Division by zero");
+        return std::unexpected(DivideError::DivisionByZero);
     }
     return static_cast<double>(a) / b;
 }

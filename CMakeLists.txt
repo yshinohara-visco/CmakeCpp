@@ -20,4 +20,23 @@ set_target_properties(${TARGET_NAME}
 target_sources(${TARGET_NAME}
 	PRIVATE
 		main.cpp
- "divide.h" "divide.cpp"  )
+		divide.h
+		divide.cpp
+)
+
+# ベンチマーク用の実行ファイル
+set (BENCHMARK_TARGET_NAME Benchmark)
+add_executable(${BENCHMARK_TARGET_NAME})
+
+set_target_properties(${BENCHMARK_TARGET_NAME}
+	PROPERTIES
+		CXX_STANDARD 23
+		CXX_STANDARD_REQUIRED ON
+)
+
+target_sources(${BENCHMARK_TARGET_NAME}
+	PRIVATE
+		benchmark.cpp
+		divide.h
+		divide.cpp
+)
