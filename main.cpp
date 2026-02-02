@@ -1,9 +1,11 @@
 ﻿#include <iostream>
 
 #include "coroutine.h"
+#include "generator.h"
 
 int main()
 {
+	/* <coroutine>を試したコード
 	// 中断、再開を繰り返し最後まで実行
 	{
 		auto task = DoTasks();
@@ -46,6 +48,25 @@ int main()
 		th1.join();
 		th2.join();
 	}
+	*/
+
+    // <generator>を試したコード
+    std::cout << "Fibonacci数列の最初の10項:" << std::endl;
+	int count = 0;
+	for (auto num : fibonacci())
+	{
+		std::cout << num << " ";
+		if (++count >= 10)
+			break;
+	}
+	std::cout << std::endl << std::endl;
+
+	std::cout << "チェックポイント付き処理の実行:" << std::endl;
+	for (auto checkpoint : checkpointProcess())
+	{
+		// ここでengineからGUIに通知を送るとかすれば、進捗表示が楽にできるのでは?
+		std::cout << "到達したチェックポイント: " << checkpoint << std::endl;
+    }
 	
 	return 0;
 }
